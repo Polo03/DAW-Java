@@ -34,7 +34,7 @@ public class Main {
         DAOJuguete dao = new DAOJuguete();
         String nombreJuguete;
         int idJuguete=0;
-        boolean entradaValida = false;
+        boolean entradaValida;
         switch (indice){
             case 1:
                 System.out.print("Introduzca el nombre del juguete a introducir: ");
@@ -48,7 +48,6 @@ public class Main {
                 break;
 
             case 3:
-
                 entradaValida = false;
                 int numeroOrdenar=0;
                 while (!entradaValida) {
