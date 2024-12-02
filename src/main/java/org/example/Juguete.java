@@ -8,6 +8,14 @@ public class Juguete {
         super();
     }
 
+    public Juguete(String nombre) {
+        this.nombre = nombre;
+    }
+    public Juguete(int id, String nombre) {
+        this.id = id;
+        this.nombre = nombre;
+    }
+
     public int getId() {
         return id;
     }
