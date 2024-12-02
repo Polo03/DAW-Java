@@ -33,7 +33,8 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         DAOJuguete dao = new DAOJuguete();
         String nombreJuguete;
-        int idJuguete;
+        int idJuguete=0;
+        boolean entradaValida = false;
         switch (indice){
             case 1:
                 System.out.print("Introduzca el nombre del juguete a introducir: ");
@@ -63,8 +64,20 @@ public class Main {
                 break;
 
             case 5:
-                System.out.print("Introduzca el id del juguete a modificar: ");
-                idJuguete=scanner.nextInt();
+                // Repetir hasta que el usuario ingrese un número entero válido
+                entradaValida = false;
+                while (!entradaValida) {
+                    System.out.print("Introduzca el id del juguete a modificar: ");
+
+                    if (scanner.hasNextInt()) {  // Verifica si el siguiente token es un entero
+                        idJuguete = scanner.nextInt();  // Lee el número entero
+                        entradaValida = true;  // Si es un entero, salimos del bucle
+                    } else {
+                        // Si no es un número entero, mostramos un mensaje y continuamos solicitando
+                        System.out.println("¡Eso no es un número entero! Intenta de nuevo.");
+                        scanner.next();  // Limpiar el buffer de entrada
+                    }
+                }
                 scanner.nextLine();
                 System.out.print("Introduzca el nuevo nombre del juguete: ");
                 nombreJuguete=scanner.nextLine();
@@ -73,8 +86,20 @@ public class Main {
                 break;
 
             case 6:
-                System.out.print("Introduzca el id del juguete a eliminar: ");
-                idJuguete=scanner.nextInt();
+                // Repetir hasta que el usuario ingrese un número entero válido
+                entradaValida = false;
+                while (!entradaValida) {
+                    System.out.print("Introduzca el id del juguete a eliminar: ");
+
+                    if (scanner.hasNextInt()) {  // Verifica si el siguiente token es un entero
+                        idJuguete = scanner.nextInt();  // Lee el número entero
+                        entradaValida = true;  // Si es un entero, salimos del bucle
+                    } else {
+                        // Si no es un número entero, mostramos un mensaje y continuamos solicitando
+                        System.out.println("¡Eso no es un número entero! Intenta de nuevo.");
+                        scanner.next();  // Limpiar el buffer de entrada
+                    }
+                }
                 dao.deleteJuguete(new Juguete(idJuguete,""));
                 System.out.println("Juguete Eliminado.\n");
                 break;
