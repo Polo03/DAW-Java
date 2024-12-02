@@ -25,9 +25,15 @@ public class DAOJuguete {
         listaNombres.add("Juguete 5");
     }
 
-    public ArrayList<Juguete> getAllJuguetes() throws SQLException {
-        listaJuguetes = new ArrayList<>();
-        PreparedStatement sentencia = conexion.prepareStatement("SELECT * FROM juguetes");
+    public ArrayList<Juguete> getAllJuguetes(int ordenacion) throws SQLException {
+        listaJuguetes=new ArrayList<>();
+        PreparedStatement sentencia;
+        if(ordenacion==1){
+            sentencia = conexion.prepareStatement("SELECT * FROM juguetes ORDER BY id ASC");
+        }else{
+            sentencia = conexion.prepareStatement("SELECT * FROM juguetes ORDER BY nombre ASC");
+        }
+
 
         ResultSet resultado = sentencia.executeQuery();
         while (resultado.next()) {

@@ -48,7 +48,25 @@ public class Main {
                 break;
 
             case 3:
-                for (Juguete juguete: dao.getAllJuguetes()){
+
+                entradaValida = false;
+                int numeroOrdenar=0;
+                while (!entradaValida) {
+                    System.out.println("¿Como quieres ordenar los juguetes?");
+                    System.out.println("1. Por Id");
+                    System.out.println("2. Por Nombre");
+
+                    if (scanner.hasNextInt()) {  // Verifica si el siguiente token es un entero
+                        numeroOrdenar=scanner.nextInt(); // Lee el número entero
+                        if(numeroOrdenar==1 || numeroOrdenar==2)
+                            entradaValida = true;  // Si es un entero, salimos del bucle
+                    } else {
+                        // Si no es un número entero, mostramos un mensaje y continuamos solicitando
+                        System.out.println("¡Eso no es un número entero! Intenta de nuevo.");
+                        scanner.next();  // Limpiar el buffer de entrada
+                    }
+                }
+                for (Juguete juguete: dao.getAllJuguetes(numeroOrdenar)) {
                     System.out.println(juguete.toString());
                 }
                 break;
